@@ -12,8 +12,9 @@ applications:
             # Example: echo "API_URL=$API_URL" > .env
         build:
           commands:
-            # Authenticate EAS CLI (ensure EAS access tokens are configured in Amplify)
-            - eas build --platform=android
+            # Authenticate EAS CLI using the access token
+            - echo "EAS_ACCESS_TOKEN=$EAS_ACCESS_TOKEN" > .env
+            - eas build --platform=android --non-interactive
       artifacts:
         # Specify where EAS outputs the build artifacts
         baseDirectory: ./build
