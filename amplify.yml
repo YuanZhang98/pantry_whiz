@@ -1,0 +1,26 @@
+version: 1
+applications:
+  - frontend:
+      phases:
+        preBuild:
+          commands:
+            # Install Expo CLI and EAS CLI globally
+            - npm install -g expo-cli eas-cli
+            # Install project dependencies
+            - npm ci
+            # Optional: Set up environment variables if needed
+            # Example: echo "API_URL=$API_URL" > .env
+        build:
+          commands:
+            # Authenticate EAS CLI (ensure EAS access tokens are configured in Amplify)
+            - eas build --platform=android
+      artifacts:
+        # Specify where EAS outputs the build artifacts
+        baseDirectory: ./build
+        files:
+          - "**/*"
+      cache:
+        paths:
+          - node_modules/**/*
+          - .expo/**/*
+          - .eas/**/*
