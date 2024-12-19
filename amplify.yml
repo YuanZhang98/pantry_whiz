@@ -13,7 +13,7 @@ applications:
         build:
           commands:
             # Authenticate EAS CLI using the access token
-            - echo "EAS_ACCESS_TOKEN=$EAS_ACCESS_TOKEN" > .env
+            - export EXPO_TOKEN=$EAS_ACCESS_TOKEN
             - eas build --platform=android --non-interactive
       artifacts:
         # Specify where EAS outputs the build artifacts
